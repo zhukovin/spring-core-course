@@ -8,7 +8,11 @@
         <constructor-arg value="John Snow"/>
     </bean>
 
-    <bean id="eventLogger" class="com.epam.edu.spring.core.ConsoleEventLogger"/>
+    <!--<bean id="eventLogger" class="com.epam.edu.spring.core.ConsoleEventLogger"/>-->
+
+    <bean id="eventLogger" class="com.epam.edu.spring.core.FileEventLogger" init-method="init">
+        <constructor-arg value="demo.log"/>
+    </bean>
 
     <bean id="app" class="com.epam.edu.spring.core.App">
         <constructor-arg ref="client"/>

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 class App {
-    private final ConsoleEventLogger eventLogger;
+    private final EventLogger eventLogger;
     private final Client client;
 
     void logEvent(Event event) {
