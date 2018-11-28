@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.epam.spring</groupId>
+    <artifactId>com.epam.spring.core</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.0.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <!--
+         Distribution information for a project that enables deployment
+         of the site and artifacts to remote web servers and repositories respectively.
+         The following properties must be defined in the .m2/settings.xml
+         -->
+
+        <repository>
+            <id>${imagenpay.releases.id}</id>
+            <url>${imagenpay.releases.url}</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>${imagenpay.snapshots.id}</id>
+            <url>${imagenpay.snapshots.url}</url>
+        </snapshotRepository>
+
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <!-- Although Spring Boot defines <parameters>true</parameters> in its POM for maven-compiler-plugin,
+                         we use compilerArgument to set -parameters javac option again to allow IntelliJ IDEA
+                         to import it when it imports maven module. Otherwise, it looses this option and @JsonCreator
+                         won't be able to lookup constructor parameters names via reflection.
+                         See https://youtrack.jetbrains.com/issue/IDEA-194601, https://youtrack.jetbrains.com/v2/issue/IDEA-143742 -->
+                    <compilerArgument>-parameters</compilerArgument>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
