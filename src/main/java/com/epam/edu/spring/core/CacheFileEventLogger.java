@@ -1,17 +1,19 @@
 package com.epam.edu.spring.core;
 
-import lombok.RequiredArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@RequiredArgsConstructor
-public class CacheFileEventLogger implements EventLogger {
+public class CacheFileEventLogger extends FileEventLogger {
 
-    private final FileEventLogger delegateLogger;
+//    private final FileEventLogger delegateLogger;
     private final int cacheCapacity;
 
     private List<Event> cache = new ArrayList<>();
+
+    public CacheFileEventLogger(String filename, int cacheCapacity) {
+        super(filename);
+        this.cacheCapacity = cacheCapacity;
+    }
 
     @Override
     public void logEvent(Event event) {
@@ -31,6 +33,6 @@ public class CacheFileEventLogger implements EventLogger {
     }
 
     private void flushCache() {
-        cache.forEach(delegateLogger::logEvent);
+        cache.forEach(super::logEvent);
     }
 }

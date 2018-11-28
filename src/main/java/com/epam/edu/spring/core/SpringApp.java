@@ -13,6 +13,9 @@ public class SpringApp {
 
             app.logEvent(newEvent(context, "Dear 1, winter is coming!"));
             app.logEvent(newEvent(context, "Dear 1, winter is over!"));
+            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
+            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
+            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
         }
     }
 

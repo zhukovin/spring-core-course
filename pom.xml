@@ -42,25 +42,6 @@
         </dependency>
     </dependencies>
 
-    <distributionManagement>
-        <!--
-         Distribution information for a project that enables deployment
-         of the site and artifacts to remote web servers and repositories respectively.
-         The following properties must be defined in the .m2/settings.xml
-         -->
-
-        <repository>
-            <id>${imagenpay.releases.id}</id>
-            <url>${imagenpay.releases.url}</url>
-        </repository>
-
-        <snapshotRepository>
-            <id>${imagenpay.snapshots.id}</id>
-            <url>${imagenpay.snapshots.url}</url>
-        </snapshotRepository>
-
-    </distributionManagement>
-
     <build>
         <plugins>
             <plugin>

@@ -1,5 +1,6 @@
 package com.epam.edu.spring.core;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import java.io.File;
@@ -16,7 +17,7 @@ public class FileEventLogger implements EventLogger {
 
     private File file;
 
-    private void init() throws IOException {
+    public void init() throws IOException {
         file = new File(filename);
         String fileAbsolutePath = file.getAbsolutePath();
         if(!file.exists() && !file.createNewFile())
@@ -29,10 +30,19 @@ public class FileEventLogger implements EventLogger {
 
     @Override
     public void logEvent(Event event) {
+        assertBeanIsInitialized();
         try {
-            writeStringToFile(file, event.getMessage() + "\n", ENCODING, APPEND);
+            writeStringToFile(file, event + "\n", ENCODING, APPEND);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void assertBeanIsInitialized() {
+        if (file == null) {
+            String message = "Please specify init-method=\"init\" when defining the bean.";
+            System.out.println(message);
+            throw new IllegalStateException(message);
         }
     }
 }
