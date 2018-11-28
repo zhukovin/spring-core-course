@@ -30,7 +30,7 @@ public class FileEventLogger implements EventLogger {
     @Override
     public void logEvent(Event event) {
         try {
-            writeStringToFile(file, event.getMessage(), ENCODING, APPEND);
+            writeStringToFile(file, event.getMessage() + "\n", ENCODING, APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
