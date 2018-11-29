@@ -8,7 +8,14 @@ class App {
     private final Client client;
 
     void logEvent(Event event) {
-        event.setMessage(event.getMessage().replaceAll(client.getId(), client.getFullName()));
+        event.setMessage(personalizedMessageOf(event));
         eventLogger.logEvent(event);
+    }
+
+    private String personalizedMessageOf(Event event) {
+        return event.getMessage()
+                .replaceAll("\\{greeting}", client.getGreeting())
+                .replaceAll("\\{fullName}", client.getFullName())
+                ;
     }
 }

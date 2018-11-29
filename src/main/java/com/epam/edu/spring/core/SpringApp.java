@@ -11,12 +11,16 @@ public class SpringApp {
 
             App app = (App) context.getBean("app");
 
-            app.logEvent(newEvent(context, "Dear 1, winter is coming!"));
-            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
-            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
-            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
-            app.logEvent(newEvent(context, "Dear 1, winter is over!"));
+            app.logEvent(newEvent(context, message("winter is coming!")));
+            app.logEvent(newEvent(context, message("winter is over!")));
+            app.logEvent(newEvent(context, message("winter is over!")));
+            app.logEvent(newEvent(context, message("winter is over!")));
+            app.logEvent(newEvent(context, message("winter is over!")));
         }
+    }
+
+    private static String message(String text) {
+        return "{greeting} {fullName}, " + text;
     }
 
     private static Event newEvent(ApplicationContext context, String message) {

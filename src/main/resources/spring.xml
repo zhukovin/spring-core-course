@@ -6,6 +6,7 @@
     <import resource="loggers.xml"/>
 
     <bean id="client" class="com.epam.edu.spring.core.Client">
+        <property name="greeting" value="What's up!" />
         <constructor-arg value="1"/>
         <constructor-arg value="John Snow"/>
     </bean>
