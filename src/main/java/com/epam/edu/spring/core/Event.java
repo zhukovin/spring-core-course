@@ -16,6 +16,8 @@ public class Event {
     private final DateFormat dateFormat;
     @Setter
     private String message;
+    @Setter
+    private EventType type;
 
     @Override
     public String toString() {
