@@ -1,22 +1,24 @@
 package com.epam.edu.spring.core;
 
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
 import static org.apache.commons.io.FileUtils.writeStringToFile;
 
-@RequiredArgsConstructor
+@Component
 public class FileEventLogger implements EventLogger {
     private static final boolean APPEND = true;
     private static final String ENCODING = "utf-8";
-
-    private final String filename;
+    @Value("${fileName}")
+    private String filename;
 
     private File file;
 
+    @PostConstruct
     public void init() throws IOException {
         file = new File(filename);
         String fileAbsolutePath = file.getAbsolutePath();

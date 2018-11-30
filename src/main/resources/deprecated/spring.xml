@@ -17,6 +17,7 @@
         <property name="locations">
             <list>
                 <value>classpath:client.properties</value>
+                <value>classpath:loggers.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true"/>
@@ -42,7 +43,7 @@
     <bean id="app" class="com.epam.edu.spring.core.App"
           c:client-ref="client"
           c:defaultLogger-ref="cacheFileEventLogger"
-          c:loggers-ref="loggerMap"
+          c:eventTypeLoggers-ref="loggerMap"
     />
 
     <!--<bean id="app" class="com.epam.edu.spring.core.App">-->

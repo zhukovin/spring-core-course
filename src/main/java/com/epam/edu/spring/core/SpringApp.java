@@ -8,9 +8,12 @@ import static com.epam.edu.spring.core.EventType.ERROR;
 import static com.epam.edu.spring.core.EventType.INFO;
 
 public class SpringApp {
-    public static void main(String[] args) {
 
-        try (ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("spring.xml")) {
+    public static void main(String[] args) {
+        try (ConfigurableApplicationContext context =
+//                     new AnnotationConfigApplicationContext(AppConfig.class))
+
+                     new ClassPathXmlApplicationContext("spring-annotations.xml")) {
 
             App app = (App) context.getBean("app");
 

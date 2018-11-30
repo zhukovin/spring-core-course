@@ -1,18 +1,24 @@
 package com.epam.edu.spring.core;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
 
-@RequiredArgsConstructor
+@Component
+//@RequiredArgsConstructor
 class App {
-    //    private final EventLogger eventLogger;
-    private final Client client;
-    private final EventLogger defaultLogger;
-    private final Map<EventType, EventLogger> loggers;
+    @Autowired
+    private Client client;
+    @Autowired
+    @Qualifier("fileEventLogger")
+    private EventLogger defaultLogger;
+    @Autowired
+    private Map<EventType, EventLogger> eventTypeLoggers;
 
     void logEvent(Event event) {
         event.setMessage(personalizedMessageOf(event));
@@ -24,7 +30,7 @@ class App {
     }
 
     private Optional<EventLogger> specificLoggerFor(Event event) {
-        return ofNullable(loggers.get(event.getType()));
+        return ofNullable(eventTypeLoggers.get(event.getType()));
     }
 
     private String personalizedMessageOf(Event event) {

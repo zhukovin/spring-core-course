@@ -1,19 +1,19 @@
 package com.epam.edu.spring.core;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CacheFileEventLogger extends FileEventLogger {
 
-//    private final FileEventLogger delegateLogger;
-    private final int cacheCapacity;
+    @Value("${cacheCapacity}")
+    private int cacheCapacity;
 
     private List<Event> cache = new ArrayList<>();
-
-    public CacheFileEventLogger(String filename, int cacheCapacity) {
-        super(filename);
-        this.cacheCapacity = cacheCapacity;
-    }
 
     @Override
     public void logEvent(Event event) {
@@ -24,6 +24,7 @@ public class CacheFileEventLogger extends FileEventLogger {
         cache.add(event);
     }
 
+    @PreDestroy
     public void destroy() {
         flushCache();
     }
