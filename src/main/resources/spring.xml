@@ -5,10 +5,20 @@
 
     <import resource="loggers.xml"/>
 
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:client.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="systemPropertiesMode" value="2" />
+    </bean>
+
     <bean id="client" class="com.epam.edu.spring.core.Client">
-        <property name="greeting" value="What's up" />
-        <constructor-arg value="1"/>
-        <constructor-arg value="John Snow"/>
+        <property name="greeting" value="${greeting}" />
+        <constructor-arg value="${id}"/>
+        <constructor-arg value="${name}"/>
     </bean>
 
     <bean id="app" class="com.epam.edu.spring.core.App">
