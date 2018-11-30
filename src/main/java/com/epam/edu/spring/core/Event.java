@@ -3,7 +3,6 @@ package com.epam.edu.spring.core;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +17,7 @@ import java.util.Random;
 public class Event {
     private final int id = new Random().nextInt();
 
-    @Autowired
     private final Date date;
-    @Autowired
     private final DateFormat dateFormat;
 
     @Setter

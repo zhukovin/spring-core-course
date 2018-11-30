@@ -1,8 +1,6 @@
 package com.epam.edu.spring.core;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -15,10 +13,15 @@ import static java.util.Arrays.asList;
 
 @Configuration
 @ComponentScan(basePackages = "com.epam.edu.spring.core")
+@PropertySources({
+        @PropertySource("classpath:client.properties"),
+        @PropertySource("classpath:loggers.properties")
+})
 public class AppConfig {
 
     @Bean
-    public Map<EventType, EventLogger> eventTypeLoggers(ConsoleEventLogger consoleEventLogger, CombinedEventLogger combinedEventLogger) {
+    public Map<EventType, EventLogger> eventTypeLoggers(
+            ConsoleEventLogger consoleEventLogger, CombinedEventLogger combinedEventLogger) {
         Map<EventType, EventLogger> map = new HashMap<>();
         map.put(EventType.INFO, consoleEventLogger);
         map.put(EventType.ERROR, combinedEventLogger);
@@ -36,7 +39,7 @@ public class AppConfig {
     }
 
     @Bean
-    public Date date() {
+    public Date currentDate() {
         return new Date();
     }
 

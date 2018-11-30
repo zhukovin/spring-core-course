@@ -2,7 +2,7 @@ package com.epam.edu.spring.core;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static com.epam.edu.spring.core.EventType.ERROR;
 import static com.epam.edu.spring.core.EventType.INFO;
@@ -11,9 +11,10 @@ public class SpringApp {
 
     public static void main(String[] args) {
         try (ConfigurableApplicationContext context =
-//                     new AnnotationConfigApplicationContext(AppConfig.class))
+                     new AnnotationConfigApplicationContext(AppConfig.class))
 
-                     new ClassPathXmlApplicationContext("spring-annotations.xml")) {
+//                     new ClassPathXmlApplicationContext("spring-annotations.xml"))
+        {
 
             App app = (App) context.getBean("app");
 
