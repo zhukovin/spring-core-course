@@ -10,8 +10,10 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+
 @Component
-@Scope("prototype")
+@Scope(SCOPE_PROTOTYPE)
 @RequiredArgsConstructor
 @Getter
 public class Event {
